@@ -36,7 +36,7 @@ export class ProductsService {
     } catch (error) {
       throw new RpcException({
         statusCode: 400,
-        message: 'User not found or error in creating product',
+        message: 'User not found or error creating product',
       });
     }
   }
