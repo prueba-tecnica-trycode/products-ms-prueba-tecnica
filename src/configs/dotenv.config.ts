@@ -9,7 +9,10 @@ const envVarsSchema = joi
   .unknown(true);
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const { error, value } = envVarsSchema.validate(process.env);
+const { error, value } = envVarsSchema.validate({
+  ...process.env,
+  NATS_URL: process.env.NATS_URL?.split(',') || [],
+});
 
 if (error) {
   throw new Error(`Config validation error: ${error.message}`);
